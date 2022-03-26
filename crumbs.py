@@ -9,9 +9,8 @@ if __name__ =='__main__':
         description='''CRUMBS is a python app that verifies current checksums with provided sum or online repository (Debian, Arch)''',
         epilog="""All is well that ends well."""
         )
-    parser.add_argument('Path', type=str, default='/bin/bash', help='Path pointing to executable file or directory of executable files')
-    parser.add_argument('--hash', type=str, help="Hash of the file used for checking. MUST MATCH system repository sum provided. (Debian = MD5Sum, Arch = MD5Sum")
-    parser.add_argument('-d', '--directory', type=str, help='Directory of files to verify')
+    parser.add_argument('Path', type=str, default='/bin/bash', help='Path pointing to executable file or directory of executable files, or list of comma seperated files')
+    parser.add_argument('--Hash', type=str, default='md5sum', help="Hash of the file used for checking. MUST MATCH system repository sum provided. (Debian = MD5Sum, Arch = MD5Sum")
     args=parser.parse_args()
 
     #TODO remove testing
@@ -21,8 +20,12 @@ if __name__ =='__main__':
 
     # provided Path is a file
     if os.path.isfile(args.Path):
-        # Comparse hash to provided one
-        if not args.Hash:
-            args.Hash = 'md5sum'
-        # get_file_hash(args.Path, args.Hash.lower())
+        # Comparse Hash to provided one
+        
+        # get_file_Hash(args.Path, args.Hash.lower())
         print(f'Decoding {args.Path} into {args.Hash}')
+    if os.path.isdir(args.Path):
+        # call get_all_file_Hash
+
+        # get_dir_Hashes(args.Path, args.Hash)
+        print(f'Decoding files in {args.Path} to {args.Hash}')
