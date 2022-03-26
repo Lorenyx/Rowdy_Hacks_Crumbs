@@ -2,8 +2,8 @@ import os
 
 from subprocess import run, STDOUT
 
-def get_hash(binName: str, hashType: str):
-    "Takes filename and hash and returns the computed hash of that file"
+def get_hash(binName: str):
+    "Returns md5sum of file from apt-get repository"
     #TODO Sanitize input to prevent arbitrary execution
 
     # Collect md5sums to prepare for parsing, 
