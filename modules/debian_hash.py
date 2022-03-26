@@ -12,7 +12,7 @@ def get_hash(binName: str, hashType: str):
         print(f'[-] {exit_code.stderr}')
         return
     last_line = str(exit_code.stdout).split(' ')[-1]
-    chksum = last_line[len('MD5Sum:') : -len('\\n')]
+    chksum = last_line[len('MD5Sum:') : -len(r'\\n')]
     return chksum
 
 
