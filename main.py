@@ -6,6 +6,9 @@ from turtle import bgcolor
 import modules
 
 from click import command
+from modules.debian_hash import get_hash
+
+from modules.sys_identify import get_os
 
 def retrieve_input():
     print(hash_var.get())
@@ -19,14 +22,13 @@ def retrieve_input():
 tk = tkinter
 root = Tk()
 root.title("Hash comparator")
+hash_var = tk.StringVar()
+path_var = tk.StringVar()
 
 
 frm = ttk.Frame(root,padding=10)
-
 frm.grid()
 
-hash_var = tk.StringVar()
-path_var = tk.StringVar()
 
 
 ttk.Label(frm, text="Enter Hash:\t").grid(column=0, row=0) 
@@ -41,5 +43,8 @@ ttk.Label(frm,text="Executable Status:\t").grid(column=0,row=2)
 
 
 ttk.Button(frm, text="Check", command=retrieve_input).grid(column=2, row=2)
-
+dist = get_os()
+if (dist == "debian"):
+    get_hash()
 root.mainloop()
+

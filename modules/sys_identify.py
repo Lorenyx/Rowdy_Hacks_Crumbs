@@ -2,6 +2,7 @@ import subprocess
 
 # system OS checking
 def get_os():
+    "Gets OS info such as distribution"
     info = {}
 
     os_info = subprocess.run("cat /etc/os-release".split(),stdout=subprocess.PIPE,encoding='utf-8')
