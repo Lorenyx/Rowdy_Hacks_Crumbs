@@ -1,5 +1,3 @@
-import os
-
 from subprocess import run, STDOUT
 
 def get_hash(binName: str):
@@ -7,7 +5,7 @@ def get_hash(binName: str):
     #TODO Sanitize input to prevent arbitrary execution
 
     # Collect md5sums to prepare for parsing, 
-    exit_code = run(['sudo', 'apt-get', '--print-uris', 'install', binName], capture_output=True)
+    exit_code = run(['apt-get', '--print-uris', 'install', binName], capture_output=True)
     if exit_code.stderr:
         print(f'[-] {exit_code.stderr}')
         return
@@ -17,5 +15,5 @@ def get_hash(binName: str):
 
 
 if __name__ == '__main__':
-    retval = get_hash('neofetch', 'SHA1')
+    retval = get_hash('neofetch')
     print(f'OUT -> {retval}')
