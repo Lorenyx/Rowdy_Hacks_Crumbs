@@ -23,4 +23,7 @@ def get_os():
         return "Fedora"
     else:
         return -1
-print(get_os())
+
+if __name__ == '__main__':
+    retval =  (get_os())
+    print("OUT ->{}".format(retval))
