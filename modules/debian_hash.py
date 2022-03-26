@@ -8,10 +8,13 @@ def get_hash(binName: str, hashType: str):
 
     # Collect md5sums to prepare for parsing, 
     exit_code = run(['sudo', 'apt-get', '--print-uris', 'install', binName], capture_output=True)
-    return exit_code
+    if exit_code.stderr:
+        print(f'[-] {exit_code.stderr}')
+        return
+    last_line = exit_code.stdout.split('\n')[-1]
+    return last_line
 
 
 if __name__ == '__main__':
     retval = get_hash('neofetch', 'SHA1')
-    print(f'STDOUT -> {retval.stdout}')
-    print(f'STDOUT -> {retval.stderr}')
+    print(f'STDOUT -> {retval}')
