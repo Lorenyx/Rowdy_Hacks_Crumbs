@@ -2,7 +2,7 @@
 import argparse
 import os
 
-import sys_identify
+import modules.sys_identify as sys_identify
 
 if __name__ =='__main__':
     parser=argparse.ArgumentParser(
