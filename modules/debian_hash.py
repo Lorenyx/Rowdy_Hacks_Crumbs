@@ -11,10 +11,10 @@ def get_hash(binName: str, hashType: str):
     if exit_code.stderr:
         print(f'[-] {exit_code.stderr}')
         return
-    last_line = str(exit_code.stdout).split('\n')[-1]
+    last_line = str(exit_code.stdout).split('\\n')[-1]
     return last_line
 
 
 if __name__ == '__main__':
     retval = get_hash('neofetch', 'SHA1')
-    print(f'STDOUT -> {retval}')
+    print(f'OUT -> {retval}')
