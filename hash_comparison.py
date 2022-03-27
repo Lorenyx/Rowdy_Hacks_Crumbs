@@ -13,12 +13,14 @@ def get_hash(path, hash_algo):
     if os.path.isfile(path):
         # Comparse Hash to provided one
         print(f'*** Decoding file {path} into {hash_algo}')
-        get_hash_from_file(path, hash_algo)
+        ret_hash = get_hash_from_file(path, hash_algo)
 
     if os.path.isdir(path):
         # call get_all_file_Hash
         print(f'*** Decoding dir {path} into {hash_algo}')
-        get_hash_from_dir(path, hash_algo)
+        ret_hash = get_hash_from_dir(path, hash_algo)
+
+    return ret_hash
         
 
 def get_hash_from_dir(dir_path, hash_algo) -> dict:
