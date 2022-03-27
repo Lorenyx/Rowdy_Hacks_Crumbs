@@ -26,14 +26,15 @@ if __name__ =='__main__':
         #TODO Parse input file and call args
         pass
     else:
-        cur_hash = get_hash(args.Path, args.hash_algo) #TODO return dict of file: hash
+        cur_hash = get_hash(args.Path, args.hash_algo) 
         
         if args.hash:
             exp_hash = args.hash
         else:
-            exp_hash = get_hash_from_repo(args.Path, args.hash_algo)#TODO return dict of file: hash
-            print('[-] Missing hash value or file of hashes to compare against')
-            exit(-2)
+            #TODO handle mismatch algo
+            exp_hash = get_hash_from_repo(args.Path, args.hash_algo)
+            # print('[-] Missing hash value or file of hashes to compare against')
+            # exit(-2)
 
         if isinstance(cur_hash, dict):
             # handle dictionary of hashes
@@ -43,10 +44,10 @@ if __name__ =='__main__':
                 print(exp_hash[key])
                 print(key)
                 if not is_match:
-                    print(f"""*** NOT MATCH {key} 
-                    CURRENT  -> {cur_hash[key]}
-                    EXPECTED -> {exp_hash[key]}
-                    """)
+                    print(f"""*** NOT MATCH @ {key} 
+    CURRENT  -> {cur_hash[key]}
+    EXPECTED -> {exp_hash[key]}""")
+
                 elif args.verbose:
                     print(f"*** MATCH {key} @ {cur_hash[key]}")
                 
@@ -54,8 +55,9 @@ if __name__ =='__main__':
             # Handle single hash to exp hash
             is_match = cur_hash == exp_hash
             if not is_match:
-                print(f"""*** NOT MATCH {args.Path} 
+                print(f"""*** NOT MATCH @ {args.Path} 
     CURRENT  -> {cur_hash}
     EXPECTED -> {exp_hash}""")
+    
             elif args.verbose:
                 print(f"*** MATCH {args.Path} @ {cur_hash}")
