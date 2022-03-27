@@ -7,7 +7,7 @@ from modules.sys_identify import get_os
 BLOCK_SIZE = 65536
 
 
-def get_hash(path, hash_algo, is_verbose=False):
+def get_hash(path, hash_algo, is_verbose=True):
     """Helper method to get hash of file"""
     # provided Path is a file
     if os.path.isfile(path):

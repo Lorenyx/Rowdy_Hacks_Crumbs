@@ -48,7 +48,7 @@ if __name__ =='__main__':
     CURRENT  -> {cur_hash[key]}
     EXPECTED -> {exp_hash[key]}""")
 
-                elif args.verbose:
+                elif args.quiet:
                     print(f"*** MATCH {key} @ {cur_hash[key]}")
                 
         if isinstance(cur_hash, str):
@@ -64,5 +64,5 @@ if __name__ =='__main__':
     CURRENT  -> {cur_hash}
     EXPECTED -> {exp_hash}""")
 
-            elif args.verbose:
+            elif args.quiet:
                 print(f"*** MATCH {args.Path} @ {cur_hash}")
