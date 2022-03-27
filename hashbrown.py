@@ -25,8 +25,8 @@ if __name__ =='__main__':
     if args.only_hash:
         cur_hash = get_hash(args.Path, args.hash_algo, False)
         if isinstance(cur_hash, dict):
-            for k, v in cur_hash:
-                print(f"{k}:{args.hash_algo}:{v}")
+            for k in cur_hash:
+                print(f"{k}:{args.hash_algo}:{cur_hash[k]}")
                 exit(0)
         if isinstance(cur_hash, str):
             print(f"{args.Path}:{args.hash_algo}:{cur_hash}")
