@@ -6,14 +6,9 @@ from modules.sys_identify import get_os
 
 BLOCK_SIZE = 65536
 
-# file_path = input("Enter file path: ")
 
-# base_path = file_path
-# file_ls = [f for f in os.listdir(base_path) if isfile(join(base_path, f))]
-
-# for f in file_ls:
-#     print(f)
 def get_hash(path, hash_algo):
+    """Helper method to get hash of file"""
     # provided Path is a file
     if os.path.isfile(path):
         # Comparse Hash to provided one
@@ -24,10 +19,9 @@ def get_hash(path, hash_algo):
         # call get_all_file_Hash
         print(f'*** Decoding dir {path} into {hash_algo}')
         get_hash_from_dir(path, hash_algo)
+        
 
-
-
-def get_hash_from_dir(dir_path, hash_algo):
+def get_hash_from_dir(dir_path, hash_algo) -> dict:
     """Returns list of hashes for all files in directory"""
     if not os.path.isdir(dir_path):
         print(f"[-] Cannot find directory at {dir_path}")
