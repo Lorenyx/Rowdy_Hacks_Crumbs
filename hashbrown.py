@@ -16,7 +16,7 @@ if __name__ =='__main__':
     parser.add_argument('--hash', '-x', type=str, default=None, help="Hash of the file used for checking. (Note. Repositories only provide md5sum for files)")
     parser.add_argument('--hash-algo', '--algo', '-a', type=str, default='md5', help=f"Algorithm used for provided hash to verify against. ALGOS: {', '.join(list_algos())}")
     parser.add_argument('--script-file', '-f', action="store_true", help="Flag if Path points to file storing entries. (entries should be store as PATH:ALGO:HASH)")
-    parser.add_argument('--verbose', '-v', action='store_true', help="Enable verbose output")
+    parser.add_argument('--quiet', '-q', action='store_false', help="Enable verbose output")
     
     args=parser.parse_args()
 
@@ -54,10 +54,15 @@ if __name__ =='__main__':
         if isinstance(cur_hash, str):
             # Handle single hash to exp hash
             is_match = cur_hash == exp_hash
+
+            if exp_hash.strip() == "":
+                print(f"[-] Could not find expected hash for {args.Path}")
+                exit(1)
+
             if not is_match:
                 print(f"""*** NOT MATCH @ {args.Path} 
     CURRENT  -> {cur_hash}
     EXPECTED -> {exp_hash}""")
-    
+
             elif args.verbose:
                 print(f"*** MATCH {args.Path} @ {cur_hash}")
