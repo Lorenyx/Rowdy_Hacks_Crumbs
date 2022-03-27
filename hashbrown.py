@@ -36,10 +36,12 @@ if __name__ =='__main__':
             exit(-2)
 
         if isinstance(cur_hash, dict):
-            # results = {k: r == e for k, r in cur_hash for k2, e in exp_hash}
-
+            # handle dictionary of hashes
             for key in zip(cur_hash.keys(), exp_hash.keys()):
                 is_match = cur_hash[key] == exp_hash[key]
+                print(cur_hash[key])
+                print(exp_hash[key])
+                print(key)
                 if not is_match:
                     print(f"""*** NOT MATCH {key} 
                     CURRENT  -> {cur_hash[key]}
@@ -49,12 +51,11 @@ if __name__ =='__main__':
                     print(f"*** MATCH {key} @ {cur_hash[key]}")
                 
         if isinstance(cur_hash, str):
-            result = cur_hash == exp_hash
-            if result and args.verbose:
-                print(f"*** MATCH {args.Path} @ {cur_hash}")
-            else:
+            # Handle single hash to exp hash
+            is_match = cur_hash == exp_hash
+            if not is_match:
                 print(f"""*** NOT MATCH {args.Path} 
-                CURRENT  -> {cur_hash}
-                EXPECTED -> {exp_hash}
-                """)
-            
+    CURRENT  -> {cur_hash}
+    EXPECTED -> {exp_hash}""")
+            elif args.verbose:
+                print(f"*** MATCH {args.Path} @ {cur_hash}")
