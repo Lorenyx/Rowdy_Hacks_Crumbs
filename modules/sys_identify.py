@@ -13,9 +13,6 @@ def get_os():
         value = i.split("=")[1].strip("\"")
         info[key]=value
 
-
-
-
     if (info["NAME"].lower().startswith("arch")):
         return "Arch"
     elif (info["NAME"].lower().startswith("debian")):
