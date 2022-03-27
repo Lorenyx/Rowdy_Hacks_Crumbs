@@ -10,7 +10,7 @@ def recently_edited(bin:str):
         current = date.fromtimestamp(time.time())
         elapsed = current-modified
         if (elapsed.days < 14):
-            print("Friendly reminder {} has been modified within 14 days of this program running")
+            print("Friendly reminder {} has been modified within 14 days of this program running".format(bin))
     
         
     else:
