@@ -1,11 +1,13 @@
 from subprocess import run, STDOUT
+from os.path import basename
+
 
 def get_hash(binName: str):
     "Returns md5sum of file from apt-get repository"
     #TODO Sanitize input to prevent arbitrary execution
 
     # Collect md5sums to prepare for parsing, 
-    exit_code = run(['apt-get', '--print-uris', 'install', binName], capture_output=True)
+    exit_code = run(['apt-get', '--print-uris', 'install', basename(binName)], capture_output=True)
     if exit_code.stderr:
         print(f'[-] {exit_code.stderr}')
         return
