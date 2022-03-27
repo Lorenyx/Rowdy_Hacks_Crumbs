@@ -36,16 +36,18 @@ if __name__ =='__main__':
             exit(-2)
 
         if isinstance(cur_hash, dict):
-            results = {k: r == e for k, r in cur_hash for k2, e in exp_hash}
+            # results = {k: r == e for k, r in cur_hash for k2, e in exp_hash}
 
-            for file_name, hash_match in results:
-                if hash_match and args.verbose:
-                    print(f"*** MATCH {file_name} @ {cur_hash[file_name]}")
-                else:
-                    print(f"""*** NOT MATCH {file_name} 
-                    CURRENT  -> {cur_hash[file_name]}
-                    EXPECTED -> {exp_hash[file_name]}
+            for key in zip(cur_hash.keys(), exp_hash.keys()):
+                is_match = cur_hash[key] == exp_hash[key]
+                if not is_match:
+                    print(f"""*** NOT MATCH {key} 
+                    CURRENT  -> {cur_hash[key]}
+                    EXPECTED -> {exp_hash[key]}
                     """)
+                elif args.verbose:
+                    print(f"*** MATCH {key} @ {cur_hash[key]}")
+                
         if isinstance(cur_hash, str):
             result = cur_hash == exp_hash
             if result and args.verbose:
