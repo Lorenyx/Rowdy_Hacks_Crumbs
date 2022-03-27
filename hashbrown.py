@@ -2,7 +2,7 @@
 import argparse
 import os
 
-from hash_comparison import get_hash, list_algos #TODO move into modules/ 
+from hash_comparison import get_hash, get_hash_from_repo, list_algos #TODO move into modules/ 
 
 PROG_NAME = 'HASHBROWN'
 AUTHORS = ['_','Isaiah Flores 🤠','Mason Eckenrod']
@@ -17,7 +17,7 @@ if __name__ =='__main__':
     parser.add_argument('--hash-algo', '--algo', type=str, default='md5sum', help=f"Algorithm used for provided hash to verify against. ALGOS: {', '.join(list_algos())}")
     parser.add_argument('--script-file', '-f', action="store_true", help="Flag if Path points to file storing entries. (entries should be store as PATH:ALGO:HASH)")
     parser.add_argument('--verbose', '-v', action='store_true', help="Enable verbose output")
-    #TODO add verbose option to print all lines
+    
     args=parser.parse_args()
 
     
