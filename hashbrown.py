@@ -5,7 +5,7 @@ import os
 from hash_comparison import get_hash, list_algos #TODO move into modules/ 
 
 PROG_NAME = 'HASHBROWN'
-AUTHORS = ['_','_','Mason Eckenrod']
+AUTHORS = ['_','Isaiah Flores 🤠','Mason Eckenrod']
 
 if __name__ =='__main__':
     parser=argparse.ArgumentParser(
