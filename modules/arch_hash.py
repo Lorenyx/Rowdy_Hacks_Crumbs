@@ -14,10 +14,8 @@ def get_hash(bin:str):
     
       
         
-    # print(info)
-    # print(info.keys())
 
     
 
 if __name__ == "__main__":
-    get_hash("$(command -v htop)")
+    get_hash("htop")
