@@ -7,7 +7,7 @@ def get_hash(binName: str):
     #TODO Sanitize input to prevent arbitrary execution
 
     # Collect md5sums to prepare for parsing, 
-    exit_code = run(['apt-get', '--reinstall', '--print-uris', 'install', basename(binName)], capture_output=True) # WILL NOT REINSTALL due to --prin-uris flag and not sudo
+    exit_code = run(['apt-get', '--reinstall',
     if exit_code.stderr:
         print(f'[-] {exit_code.stderr}')
         return
