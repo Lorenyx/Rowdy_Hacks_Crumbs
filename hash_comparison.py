@@ -7,17 +7,19 @@ from modules.sys_identify import get_os
 BLOCK_SIZE = 65536
 
 
-def get_hash(path, hash_algo):
+def get_hash(path, hash_algo, is_verbose=False):
     """Helper method to get hash of file"""
     # provided Path is a file
     if os.path.isfile(path):
         # Comparse Hash to provided one
-        print(f'*** Decoding file {path} into {hash_algo}')
+        if is_verbose:
+            print(f'*** Hashing file {path} into {hash_algo}')
         ret_hash = get_hash_from_file(path, hash_algo)
 
     if os.path.isdir(path):
         # call get_all_file_Hash
-        print(f'*** Decoding dir {path} into {hash_algo}')
+        if is_verbose:
+            print(f'*** Hashing dir {path} into {hash_algo}')
         ret_hash = get_hash_from_dir(path, hash_algo)
 
     return ret_hash
