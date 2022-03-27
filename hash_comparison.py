@@ -1,7 +1,8 @@
 #python project to store the checksums for comparison
-import os 
-from os.path import isfile, join
+import os
 import hashlib
+
+from modules.sys_identify import get_os
 
 BLOCK_SIZE = 65536
 
@@ -32,13 +33,13 @@ def get_hash_from_dir(dir_path, hash_algo):
         print(f"[-] Cannot find directory at {dir_path}")
         return
 
-    hashes = []
+    hashes = {}
     for file in os.listdir(dir_path):
-        hashes.append(get_hash_from_file(os.path.join(dir_path, file), hash_algo))
+        hashes[file] = get_hash_from_file(os.path.join(dir_path, file), hash_algo)
     return hashes
 
 
-def get_hash_from_file(file_path, hash_algo):
+def get_hash_from_file(file_path, hash_algo) -> str:
     """Returns hash of file at filePath at hashAlgo"""
     if not os.path.isfile(file_path):
         print(f"[-] Cannot open file at {file_path}")
@@ -57,6 +58,27 @@ def get_hash_from_file(file_path, hash_algo):
             fb = f.read(BLOCK_SIZE) # Read the next block from the file
 
     return file_hash.hexdigest() # Get the hexadecimal digest of the hash
+
+
+def get_hash_from_repo(binName, hash_algo):
+    """Reads hashes from os repository and returns dict"""
+    OS_SYSTEM = get_os()
+
+    if OS_SYSTEM == 'Arch':
+        from modules.arch_hash import get_hash as os_get_hash
+
+    elif OS_SYSTEM == 'Debian':
+        from modules.debian_hash import get_hash as os_get_hash
+         
+    elif OS_SYSTEM == 'Fedora':
+        # from modules.fedora_hash import get_hash
+        return
+        
+    else:
+        return
+
+    return os_get_hash(binName)
+
 
 
 def list_algos():
