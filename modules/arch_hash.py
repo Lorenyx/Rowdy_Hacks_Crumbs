@@ -5,11 +5,11 @@ import subprocess
 
 def get_hash(bin:str):
     "Retrieves the hash for a program using arch"
-    z
-    hash_check = subprocess.run("paccheck {}".format(bin).split(),stdout=subprocess.PIPE,encoding='utf-8')
+    
+    hash_check = subprocess.run("md5sum {}".format(bin).split(),stdout=subprocess.PIPE,encoding='utf-8')
     info = {}
-    print(hash_check.returncode)
     output = hash_check.stdout.split("\n")[:-1]
+    return output[0].split(" ")[0]
     
     
       
@@ -18,4 +18,4 @@ def get_hash(bin:str):
     
 
 if __name__ == "__main__":
-    get_hash("htop")
+    get_hash("/usr/bin/htop")

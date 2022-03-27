@@ -14,7 +14,7 @@ if __name__ =='__main__':
         )
     parser.add_argument('Path', type=str, default='/bin/bash', help='Path pointing to executable file or directory of executable files, or list of comma seperated files')
     parser.add_argument('--hash', type=str, default=None, help="Hash of the file used for checking. (Note. Repositories only provide md5sum for files)")
-    parser.add_argument('--hash-algo', '--algo', type=str, default='md5sum', help=f"Algorithm used for provided hash to verify against. ALGOS: {', '.join(list_algos())}")
+    parser.add_argument('--hash-algo', '--algo', type=str, default='md5', help=f"Algorithm used for provided hash to verify against. ALGOS: {', '.join(list_algos())}")
     parser.add_argument('--script-file', '-f', action="store_true", help="Flag if Path points to file storing entries. (entries should be store as PATH:ALGO:HASH)")
     parser.add_argument('--verbose', '-v', action='store_true', help="Enable verbose output")
     
